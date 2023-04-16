@@ -1028,9 +1028,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       ComputerSpriteSheet_9: 7821413948656206618
-      ComputerSpriteSheet_23: -506937675372913918
+      ComputerSpriteSheet_7: -9097885865353959008
       ComputerSpriteSheet_29: 3307903308962460038
-      ComputerSpriteSheet_32: 8515321505236956855
+      ComputerSpriteSheet_6: 6632709916688194559
       ComputerSpriteSheet_24: 566004426044776538
       ComputerSpriteSheet_28: -89774305892525958
       ComputerSpriteSheet_34: 435416330463981581
@@ -1061,8 +1061,8 @@ TextureImporter:
       ComputerSpriteSheet_22: -2381116152052234498
       ComputerSpriteSheet_3: -701321893011670654
       ComputerSpriteSheet_4: 8271581654393589300
-      ComputerSpriteSheet_7: -9097885865353959008
-      ComputerSpriteSheet_6: 6632709916688194559
+      ComputerSpriteSheet_23: -506937675372913918
+      ComputerSpriteSheet_32: 8515321505236956855
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
