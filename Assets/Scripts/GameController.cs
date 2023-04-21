@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
         gameOverScreen.SetUp(deathReason);
     }
 
-    public void setShield(bool broke)
+    public void setShieldDown(bool broke)
     {
         shieldDown = broke;
     }

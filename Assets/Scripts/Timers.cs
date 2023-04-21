@@ -35,37 +35,37 @@ public class Timers : MonoBehaviour
     {
         mainTimer.Update();
 
-        if (mainTimer.GetTime() == 90f)
+        if (mainTimer.GetTime() < 90f && !autopilot.getGo())
         {
             currentTasks.Add(autopilot);
             autopilot.Go();
         }
-        if (mainTimer.GetTime() == 60)
+
+        if (mainTimer.GetTime() < 60 && !engine.getGo())
         {
             currentTasks.Add(engine);
             engine.Go();
         }
+
         for (int i = 0; i < currentTasks.Count; i++)
         {
             currentTasks[i].Update();
-            if (currentTasks[i].GetTime() == 0)
+            if (currentTasks[i].GetTime() < 0)
             {
                 string deathReason = "";
                 if (currentTasks[i] == autopilot)
                 {
                     deathReason = "Death by crash!! Your autopilot system wasn't fixed in time!";
+                    FindObjectOfType<GameController>().GameOver(deathReason);
                 }
                 if (currentTasks[i] == engine)
                 {
                     deathReason = "Your engine shut down, you'll never make it to safety now!";
+                    FindObjectOfType<GameController>().GameOver(deathReason);
                 }
                 if (currentTasks[i] == shield)
                 {
-                    FindObjectOfType<GameController>().setShield(true);
-                }
-                else
-                {
-                    FindObjectOfType<GameController>().GameOver(deathReason);
+                    FindObjectOfType<GameController>().setShieldDown(true);
                 }
             }
         }  
@@ -73,6 +73,7 @@ public class Timers : MonoBehaviour
 
     public void taskComplete(CountdownTimer task)
     {
+        task.ResetToOk();
         currentTasks.Remove(task);
     }
 }

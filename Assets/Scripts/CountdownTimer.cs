@@ -38,7 +38,7 @@ public class CountdownTimer
                 output.color = Color.red;
             }
         }
-        if (!go)
+        else
         {
             output.color = Color.green;
             output.text = "OK";
@@ -58,5 +58,22 @@ public class CountdownTimer
     public float GetTime()
     {
         return currentTime;
+    }
+
+    public void shieldBroken()
+    {
+        output.color = Color.red;
+        output.text = "DOWN";
+    }
+
+    public void ResetToOk()
+    {
+        output.text = "OK";
+        output.color = Color.green;
+    }
+
+    public bool getGo()
+    {
+        return go;
     }
 }
