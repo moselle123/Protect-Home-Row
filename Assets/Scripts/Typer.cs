@@ -18,33 +18,7 @@ public class Typer : MonoBehaviour
     
     void Start()
     {
-        gameController = GameObject.FindObjectOfType<GameController>();
-        currentSystem = gameController.GetSystem();
-        if (currentSystem == "autopilot" && gameController.getAutopilotDown())
-        {
-            currentWord = "Autopilot system down!";
-            SetCurrentWord();
-        }
-        else if (currentSystem == "oxygen" && gameController.getOxygenDown())
-        {
-            currentWord = "Oxygen system down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Oxygen system restarted: System status OK!";
-            SetCurrentWord();
-        }
-        else if (currentSystem == "engine" && gameController.getEngineDown())
-        {
-            currentWord = "Engine cores down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Engine restarted: System status OK!";
-            SetCurrentWord();
-        }
-        else if (currentSystem == "battery" && gameController.getBatteryDown())
-        {
-            currentWord = "Battery cores down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Oxygen system restarted: System status OK!";
-            SetCurrentWord();
-        }
-        else if (currentSystem == "shield" && gameController.getShieldDown())
-        {
-            currentWord = "Shield down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Shield system restarted: System status OK Protection Level: 100";
-            SetCurrentWord();
-        }
+        setWindow();
     }
 
     private void SetCurrentWord()
@@ -66,33 +40,6 @@ public class Typer : MonoBehaviour
         }
 
         CheckInput();
-
-        if (remainingWord.Length == 0)
-        {
-            output.text = "COMPLETE";
-            if (currentSystem == "autopilot")
-            {
-                gameController.setAutopilotDown(false);
-            }
-            else if (currentSystem == "oxygen")
-            {
-                gameController.setOxygenDown(false);
-            }
-            else if (currentSystem == "engine")
-            {
-                gameController.setEngineDown(false);
-            }
-            else if (currentSystem == "battery")
-            {
-                gameController.setBatteryDown(false);
-            }
-            else if (currentSystem == "shield")
-            {
-                gameController.setShieldDown(false);
-            }
-            spaceship.SetActive(true);
-            computerScene.SetActive(false);
-        }
     }
 
     private void CheckInput()
@@ -114,7 +61,30 @@ public class Typer : MonoBehaviour
             RemoveLetter();
             if (IsWordComplete())
             {
-                SetCurrentWord();
+                if (currentSystem == "autopilot")
+                {
+                    gameController.setAutopilotDown(false);
+                }
+                else if (currentSystem == "oxygen")
+                {
+                    gameController.setOxygenDown(false);
+                }
+                else if (currentSystem == "engine")
+                {
+                    gameController.setEngineDown(false);
+                }
+                else if (currentSystem == "battery")
+                {
+                    gameController.setBatteryDown(false);
+                }
+                else if (currentSystem == "shield")
+                {
+                    gameController.setShieldDown(false);
+                }
+                output.text = "";
+                
+                spaceship.SetActive(true);
+                computerScene.SetActive(false);
             }
         }
     }
@@ -133,5 +103,43 @@ public class Typer : MonoBehaviour
     private bool IsWordComplete()
     {
         return remainingWord.Length == 0;
+    }
+
+    void setWindow()
+    {
+        gameController = GameObject.FindObjectOfType<GameController>();
+        currentSystem = gameController.GetSystem();
+        output.text = "System status: OK";
+        typed = "";
+        if (currentSystem == "autopilot" && gameController.getAutopilotDown())
+        {
+            currentWord = "Autopilot system down!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "oxygen" && gameController.getOxygenDown())
+        {
+            currentWord = "Oxygen system down! Oxygen system restarted: System status OK!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "engine" && gameController.getEngineDown())
+        {
+            currentWord = "Engine cores down! Engine restarted: System status OK!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "battery" && gameController.getBatteryDown())
+        {
+            currentWord = "Battery cores down! Battery system restarted: System status OK!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "shield" && gameController.getShieldDown())
+        {
+            currentWord = "Shield down! Shield system restarted: System status OK Protection Level: 100";
+            SetCurrentWord();
+        }
+    }
+
+    private void OnEnable()
+    {
+        setWindow();
     }
 }

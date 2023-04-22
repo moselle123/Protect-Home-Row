@@ -36,18 +36,28 @@ public class Timers : MonoBehaviour
     {
         mainTimer.Update();
 
-        if (mainTimer.GetTime() < 90f && !autopilot.getGo())
+        if (mainTimer.GetTime() < 90f && mainTimer.GetTime() > 85f && !autopilot.getGo())
         {
             currentTasks.Add(autopilot);
             FindObjectOfType<GameController>().setAutopilotDown(true);
             autopilot.Go();
         }
 
-        if (mainTimer.GetTime() < 60 && !engine.getGo())
+        if (mainTimer.GetTime() < 60 && mainTimer.GetTime() > 55f && !engine.getGo())
         {
             currentTasks.Add(engine);
             FindObjectOfType<GameController>().setEngineDown(true);
             engine.Go();
+        }
+
+        if (autopilot.getGo() && !FindObjectOfType<GameController>().getAutopilotDown())
+        {
+            taskComplete(autopilot);
+        }
+
+        if (engine.getGo() && !FindObjectOfType<GameController>().getEngineDown())
+        {
+            taskComplete(engine);
         }
 
         for (int i = 0; i < currentTasks.Count; i++)

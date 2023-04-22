@@ -80,6 +80,7 @@ public class CountdownTimer
     public void setShieldBroken()
     {
         go = false;
+        output.color = Color.red;
         output.text = "DOWN";
     }
 }
