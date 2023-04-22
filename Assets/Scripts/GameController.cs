@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameOver gameOverScreen;
+    string currentSystem;
     bool shieldDown = false;
 
     public void GameOver(string deathReason)
@@ -15,5 +16,10 @@ public class GameController : MonoBehaviour
     public void setShieldDown(bool broke)
     {
         shieldDown = broke;
+    }
+
+    public void setSystem(string system)
+    {
+        currentSystem = system;
     }
 }
