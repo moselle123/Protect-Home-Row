@@ -7,13 +7,44 @@ public class Typer : MonoBehaviour
 {
 
     public TextMeshProUGUI output = null;
+    public GameObject spaceship;
+    public GameObject computerScene;
 
     private string remainingWord = string.Empty;
-    private string currentWord = "hello my name is moselle";
+    private string currentWord = "";
     private string typed = "";
+    public GameController gameController;
+    string currentSystem;
+    
     void Start()
     {
-        SetCurrentWord();
+        gameController = GameObject.FindObjectOfType<GameController>();
+        currentSystem = gameController.GetSystem();
+        if (currentSystem == "autopilot" && gameController.getAutopilotDown())
+        {
+            currentWord = "Autopilot system down!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "oxygen" && gameController.getOxygenDown())
+        {
+            currentWord = "Oxygen system down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Oxygen system restarted: System status OK!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "engine" && gameController.getEngineDown())
+        {
+            currentWord = "Engine cores down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Engine restarted: System status OK!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "battery" && gameController.getBatteryDown())
+        {
+            currentWord = "Battery cores down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Oxygen system restarted: System status OK!";
+            SetCurrentWord();
+        }
+        else if (currentSystem == "shield" && gameController.getShieldDown())
+        {
+            currentWord = "Shield down! Sudo reset to initial working condition; Reset initiated in 3 2 1. Shield system restarted: System status OK Protection Level: 100";
+            SetCurrentWord();
+        }
     }
 
     private void SetCurrentWord()
@@ -28,7 +59,40 @@ public class Typer : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            spaceship.SetActive(true);
+            computerScene.SetActive(false);
+        }
+
         CheckInput();
+
+        if (remainingWord.Length == 0)
+        {
+            output.text = "COMPLETE";
+            if (currentSystem == "autopilot")
+            {
+                gameController.setAutopilotDown(false);
+            }
+            else if (currentSystem == "oxygen")
+            {
+                gameController.setOxygenDown(false);
+            }
+            else if (currentSystem == "engine")
+            {
+                gameController.setEngineDown(false);
+            }
+            else if (currentSystem == "battery")
+            {
+                gameController.setBatteryDown(false);
+            }
+            else if (currentSystem == "shield")
+            {
+                gameController.setShieldDown(false);
+            }
+            spaceship.SetActive(true);
+            computerScene.SetActive(false);
+        }
     }
 
     private void CheckInput()
@@ -70,5 +134,4 @@ public class Typer : MonoBehaviour
     {
         return remainingWord.Length == 0;
     }
-
 }

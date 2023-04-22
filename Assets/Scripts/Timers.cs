@@ -29,6 +29,7 @@ public class Timers : MonoBehaviour
         currentTasks.Add(shield);
         mainTimer.Go();
         shield.Go();
+        FindObjectOfType<GameController>().setShieldDown(true);
     }
 
     void Update()
@@ -38,12 +39,14 @@ public class Timers : MonoBehaviour
         if (mainTimer.GetTime() < 90f && !autopilot.getGo())
         {
             currentTasks.Add(autopilot);
+            FindObjectOfType<GameController>().setAutopilotDown(true);
             autopilot.Go();
         }
 
         if (mainTimer.GetTime() < 60 && !engine.getGo())
         {
             currentTasks.Add(engine);
+            FindObjectOfType<GameController>().setEngineDown(true);
             engine.Go();
         }
 
@@ -65,6 +68,7 @@ public class Timers : MonoBehaviour
                 }
                 if (currentTasks[i] == shield)
                 {
+                    currentTasks[i].setShieldBroken();
                     FindObjectOfType<GameController>().setShieldDown(true);
                 }
             }

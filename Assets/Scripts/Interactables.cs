@@ -11,6 +11,8 @@ public class Interactables : MonoBehaviour
     public GameObject system;
     public GameObject computerScene;
     public GameObject spaceship;
+    public GameController gameController;
+    public string name;
 
     void Update()
     {
@@ -18,6 +20,7 @@ public class Interactables : MonoBehaviour
         {
             if (Input.GetKeyDown(interactKey))
             {
+                gameController.setSystem(name);
                 spaceship.SetActive(false);
                 computerScene.SetActive(true);
             }

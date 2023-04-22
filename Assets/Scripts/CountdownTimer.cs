@@ -76,4 +76,10 @@ public class CountdownTimer
     {
         return go;
     }
+
+    public void setShieldBroken()
+    {
+        go = false;
+        output.text = "DOWN";
+    }
 }
