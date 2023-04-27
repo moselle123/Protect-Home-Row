@@ -10456,11 +10456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dad15f7375df0247b0ebd4ede4eda20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1848056339 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 325427383821307684, guid: 197cd294808a9bc4aa470b958afb32c7, type: 3}
-  m_PrefabInstance: {fileID: 325427384558867950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1872357898
 GameObject:
   m_ObjectHideFlags: 0
@@ -12334,22 +12329,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 325427383821307682, guid: 197cd294808a9bc4aa470b958afb32c7, type: 3}
   m_PrefabInstance: {fileID: 325427384558867950}
   m_PrefabAsset: {fileID: 0}
---- !u!58 &2106055112
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848056339}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.612075}
-  serializedVersion: 2
-  m_Radius: 1.8252016
 --- !u!1 &2134311215
 GameObject:
   m_ObjectHideFlags: 0
