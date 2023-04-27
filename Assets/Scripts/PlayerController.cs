@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1f;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
+
+    bool isInRange = false;
+    public KeyCode interactKey;
 
     Vector2 movementInput;
     Rigidbody2D rb;
@@ -24,6 +28,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isInRange)
+        {
+            if (Input.GetKeyDown(interactKey))
+            {
+                FindObjectOfType<GameController>().PauseGame();
+                SceneManager.LoadScene("Combat");
+            }
+        }
+
         if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
@@ -93,5 +106,21 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            isInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            isInRange = false;
+        }
     }
 }

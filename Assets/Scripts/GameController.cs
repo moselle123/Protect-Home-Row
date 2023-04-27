@@ -13,6 +13,9 @@ public class GameController : MonoBehaviour
     bool autopilotDown = false;
     bool oxygenDown = false;
 
+    private bool isGamePaused = false;
+    private float previousTimeScale;
+
 
     public void GameOver(string deathReason)
     {
@@ -77,6 +80,25 @@ public class GameController : MonoBehaviour
     public string GetSystem()
     {
         return currentSystem;
+    }
+
+    public void PauseGame()
+    {
+        if (!isGamePaused)
+        {
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            isGamePaused = true;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (isGamePaused)
+        {
+            Time.timeScale = previousTimeScale;
+            isGamePaused = false;
+        }
     }
 
 }

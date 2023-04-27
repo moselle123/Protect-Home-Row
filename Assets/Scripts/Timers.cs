@@ -9,11 +9,15 @@ public class Timers : MonoBehaviour
     public TextMeshProUGUI shieldTimerText;
     public TextMeshProUGUI engineTimerText;
     public TextMeshProUGUI autopilotTimerText;
+    public TextMeshProUGUI oxygenTimerText;
+    public TextMeshProUGUI batteryTimerText;
 
     CountdownTimer mainTimer;
     CountdownTimer autopilot;
     CountdownTimer engine;
     CountdownTimer shield;
+    CountdownTimer battery;
+    CountdownTimer oxygen;
 
     List<CountdownTimer> currentTasks = new List<CountdownTimer>();
 
@@ -26,15 +30,44 @@ public class Timers : MonoBehaviour
         shield = new CountdownTimer(shieldTimerText, taskTime, false);
         autopilot = new CountdownTimer(autopilotTimerText, taskTime, false);
         engine = new CountdownTimer(engineTimerText, taskTime, false);
+        battery = new CountdownTimer(batteryTimerText, taskTime, false);
+        oxygen = new CountdownTimer(oxygenTimerText, taskTime, false);
         currentTasks.Add(shield);
         mainTimer.Go();
         shield.Go();
-        FindObjectOfType<GameController>().setShieldDown(true);
+        FindObjectOfType<GameController>().setShieldDown(true);        
     }
 
     void Update()
     {
         mainTimer.Update();
+
+        if (FindObjectOfType<GameController>().getAutopilotDown() && !autopilot.getGo())
+        {
+            autopilot.Go();
+            currentTasks.Add(engine);
+        }
+        if (FindObjectOfType<GameController>().getEngineDown() && !engine.getGo())
+        {
+            engine.Go();
+            currentTasks.Add(engine);
+        }
+        if (FindObjectOfType<GameController>().getOxygenDown() && !oxygen.getGo())
+        {
+            oxygen.Go();
+            currentTasks.Add(oxygen);
+        }
+        if (FindObjectOfType<GameController>().getBatteryDown() && !battery.getGo())
+        {
+            battery.Go();
+            currentTasks.Add(battery);
+        }
+        if (FindObjectOfType<GameController>().getShieldDown() && !shield.getGo())
+        {
+            shield.Go();
+            currentTasks.Add(shield);
+        }
+
 
         if (mainTimer.GetTime() < 90f && mainTimer.GetTime() > 85f && !autopilot.getGo())
         {
@@ -59,6 +92,19 @@ public class Timers : MonoBehaviour
         {
             taskComplete(engine);
         }
+        if (oxygen.getGo() && !FindObjectOfType<GameController>().getOxygenDown())
+        {
+            taskComplete(oxygen);
+        }
+
+        if (battery.getGo() && !FindObjectOfType<GameController>().getBatteryDown())
+        {
+            taskComplete(battery);
+        }
+        if (shield.getGo() && !FindObjectOfType<GameController>().getShieldDown())
+        {
+            taskComplete(shield);
+        }
 
         for (int i = 0; i < currentTasks.Count; i++)
         {
@@ -80,6 +126,16 @@ public class Timers : MonoBehaviour
                 {
                     currentTasks[i].setShieldBroken();
                     FindObjectOfType<GameController>().setShieldDown(true);
+                }
+                if (currentTasks[i] == oxygen)
+                {
+                    deathReason = "Your oxygen was shut down for too long, you died!";
+                    FindObjectOfType<GameController>().GameOver(deathReason);
+                }
+                if (currentTasks[i] == battery)
+                {
+                    deathReason = "Your battery shut down nothing in the ship has power!";
+                    FindObjectOfType<GameController>().GameOver(deathReason);
                 }
             }
         }  
