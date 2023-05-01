@@ -41,27 +41,22 @@ public class EnemyAI : MonoBehaviour
         if (!FindObjectOfType<GameController>().getOxygenDown())
         {
             brokenSystems.Add(0);
-            Debug.Log(FindObjectOfType<GameController>().getOxygenDown());
         }
         if (!FindObjectOfType<GameController>().getEngineDown())
         {
             brokenSystems.Add(1);
-            Debug.Log(FindObjectOfType<GameController>().getEngineDown());
         }
         if (!FindObjectOfType<GameController>().getBatteryDown())
         {
             brokenSystems.Add(2);
-            Debug.Log(FindObjectOfType<GameController>().getBatteryDown());
         }
         if (!FindObjectOfType<GameController>().getAutopilotDown())
         {
             brokenSystems.Add(3);
-            Debug.Log(FindObjectOfType<GameController>().getAutopilotDown());
         }
         if (FindObjectOfType<GameController>().getShieldDown())
         {
             brokenSystems.Add(4);
-            Debug.Log(FindObjectOfType<GameController>().getShieldDown());
         }
         if (brokenSystems.Count == 0)
         {
@@ -70,7 +65,6 @@ public class EnemyAI : MonoBehaviour
         else
         {
             int randomIndex = Random.Range(0, brokenSystems.Count);
-            Debug.Log(brokenSystems.ToString());
             return brokenSystems[randomIndex];
         }
     }
