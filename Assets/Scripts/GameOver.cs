@@ -18,8 +18,7 @@ public class GameOver : MonoBehaviour
 
     public void PlayAgain()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitToMain()

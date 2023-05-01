@@ -21,4 +21,9 @@ public class PlayerCombat : MonoBehaviour
         animator.SetTrigger("swing");
         weapon.swingSword();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        animator.SetTrigger("hit");
+    }
 }

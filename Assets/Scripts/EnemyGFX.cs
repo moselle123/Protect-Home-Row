@@ -6,11 +6,13 @@ public class EnemyGFX : MonoBehaviour
 {
     Animator animator;
     SpriteRenderer spriteRenderer;
+    EnemyFire enemyFire;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyFire = GetComponent<EnemyFire>();
         animator.SetBool("isMoving", true);
     }
     public void setMoving()
@@ -41,5 +43,11 @@ public class EnemyGFX : MonoBehaviour
     public void stopAttack()
     {
         animator.SetBool("isAttacking", false);
+    }
+
+    public void shoot()
+    {
+        animator.SetTrigger("shoot");
+        enemyFire.Shoot();
     }
 }

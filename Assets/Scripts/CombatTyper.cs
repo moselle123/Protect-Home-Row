@@ -7,6 +7,10 @@ using System;
 public class CombatTyper : MonoBehaviour
 {
     public PlayerCombat player;
+    public EnemyGFX enemy;
+
+    public HealthBar enemyHealth;
+    public HealthBar playerHealth;
 
     public TextMeshProUGUI output = null;
     public TextMeshProUGUI enemyDefeated;
@@ -26,7 +30,8 @@ public class CombatTyper : MonoBehaviour
 
     void Start()
     {
-        currentTime = 30;
+        enemy.setStopped();
+        currentTime = 15;
         go = true;
         setWindow();
     }
@@ -48,6 +53,10 @@ public class CombatTyper : MonoBehaviour
             currentTime -= Time.deltaTime;
             TimeSpan timeSpan = TimeSpan.FromSeconds(currentTime);
             timerOutput.text = string.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
+        }
+        if (currentTime <= 0)
+        {
+            FindObjectOfType<GameController>().GameOver("You ran out of time to defeat your enemy!");
         }
         CheckInput();
     }
@@ -76,7 +85,6 @@ public class CombatTyper : MonoBehaviour
                     go = false;
                     enemyDefeated.gameObject.SetActive(true);
                     output.gameObject.SetActive(false);
-
                 }
                 else
                 {
@@ -84,8 +92,20 @@ public class CombatTyper : MonoBehaviour
                     nextWord = words[currentWordsIndex];
                     nextWordLength = nextWord.Length;
                     player.swingSword();
+                    int enemyHealthNow = (int) enemyHealth.getHealth() - 1;
+                    enemyHealth.SetHealth(enemyHealthNow);
                 }
          
+            }
+        }
+        else
+        {
+            enemy.shoot();
+            int playerHealthNow = (int)playerHealth.getHealth() - 1;
+            playerHealth.SetHealth(playerHealthNow);
+            if (playerHealthNow == 0)
+            {
+                FindObjectOfType<GameController>().GameOver("You were killed by your enemy!");
             }
         }
     }
@@ -123,5 +143,7 @@ public class CombatTyper : MonoBehaviour
         nextWordLength = nextWord.Length;
         typed = "";
         SetCurrentWord();
+        enemyHealth.SetMaxHealth(words.Count -  1);
+        playerHealth.SetMaxHealth(5);
     }
 }
