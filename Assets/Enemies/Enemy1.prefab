@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6836258759738964714}
   - component: {fileID: 6836258759738964712}
   - component: {fileID: 6836258759738964715}
+  - component: {fileID: 6471648978819899754}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -113,14 +114,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e2572635a6acb42a2c3e6a7750ee53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygenSystem: {fileID: 0}
-  engineSystem: {fileID: 0}
-  batterySystem: {fileID: 0}
-  autopilotSystem: {fileID: 0}
-  shieldSystem: {fileID: 0}
   enemy: {fileID: 8903104162149253300}
   speed: 40
-  nextWaypointDistance: 1
+  nextWaypointDistance: 0.6
+--- !u!114 &6471648978819899754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836258759738964705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1001 &6836258759288901860
 PrefabInstance:
   m_ObjectHideFlags: 0

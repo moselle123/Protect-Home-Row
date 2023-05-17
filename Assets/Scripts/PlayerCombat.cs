@@ -22,6 +22,11 @@ public class PlayerCombat : MonoBehaviour
         weapon.swingSword();
     }
 
+    public void die()
+    {
+        animator.SetTrigger("die");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         animator.SetTrigger("hit");

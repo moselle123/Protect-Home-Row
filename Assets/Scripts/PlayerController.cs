@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     bool isInRange = false;
     public KeyCode interactKey;
 
+    public RangeDetector rangeDetector;
+
     Vector2 movementInput;
     Rigidbody2D rb;
     Animator animator;

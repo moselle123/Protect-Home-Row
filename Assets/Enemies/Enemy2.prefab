@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6903783576443549034}
   - component: {fileID: 1892015122668289358}
   - component: {fileID: 8535023126045616465}
+  - component: {fileID: 1956795262388422046}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -48,9 +49,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2118702, y: 0.034172535}
+  m_Offset: {x: -0.2118702, y: 0.027739517}
   serializedVersion: 2
-  m_Radius: 0.23117545
+  m_Radius: 0.271918
 --- !u!50 &1892015122668289358
 Rigidbody2D:
   serializedVersion: 4
@@ -66,7 +67,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 3
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -84,14 +85,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e2572635a6acb42a2c3e6a7750ee53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygenSystem: {fileID: 0}
-  engineSystem: {fileID: 0}
-  batterySystem: {fileID: 0}
-  autopilotSystem: {fileID: 0}
-  shieldSystem: {fileID: 0}
+  oxygenSystem: {fileID: 66833739593817361, guid: b377d7ebf6cf40f4fab7265befcbdaf1, type: 3}
+  engineSystem: {fileID: 3788033016697431513, guid: a9c3978f95eac7f4c9366429a58016e7, type: 3}
+  batterySystem: {fileID: 6512689759577209179, guid: f2de663925832a544bde702008bc4610, type: 3}
+  autopilotSystem: {fileID: 7604089517402417533, guid: c13c8b2cf451e48409be7ec7f0f6137f, type: 3}
+  shieldSystem: {fileID: 1548778233264315234, guid: 9fab231bce3502a42bcec8f7770b96c3, type: 3}
   enemy: {fileID: 2137377781995525682}
   speed: 50
-  nextWaypointDistance: 0.3
+  nextWaypointDistance: 0.7
+--- !u!114 &1956795262388422046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7981903269844691717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1001 &7229535744373727637
 PrefabInstance:
   m_ObjectHideFlags: 0

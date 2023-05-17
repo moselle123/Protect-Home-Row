@@ -50,4 +50,9 @@ public class EnemyGFX : MonoBehaviour
         animator.SetTrigger("shoot");
         enemyFire.Shoot();
     }
+
+    public void die()
+    {
+        animator.SetTrigger("die");
+    }
 }

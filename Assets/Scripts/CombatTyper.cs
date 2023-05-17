@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CombatTyper : MonoBehaviour
 {
@@ -83,7 +84,9 @@ public class CombatTyper : MonoBehaviour
                 if (currentWordsIndex + 1 == words.Count)
                 {
                     go = false;
+                    StartCoroutine(BackToLevel());
                     enemyDefeated.gameObject.SetActive(true);
+                    enemy.die();
                     output.gameObject.SetActive(false);
                 }
                 else
@@ -105,7 +108,9 @@ public class CombatTyper : MonoBehaviour
             playerHealth.SetHealth(playerHealthNow);
             if (playerHealthNow == 0)
             {
-                FindObjectOfType<GameController>().GameOver("You were killed by your enemy!");
+                
+                player.die();
+                StartCoroutine(Die());
             }
         }
     }
@@ -145,5 +150,20 @@ public class CombatTyper : MonoBehaviour
         SetCurrentWord();
         enemyHealth.SetMaxHealth(words.Count -  1);
         playerHealth.SetMaxHealth(5);
+    }
+
+    IEnumerator BackToLevel()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        FindObjectOfType<GameController>().ResumeGame();
+        SceneManager.LoadScene(1);
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(1f);
+
+        FindObjectOfType<GameController>().GameOver("You were killed by your enemy!");
     }
 }

@@ -32,9 +32,8 @@ public class Timers : MonoBehaviour
         engine = new CountdownTimer(engineTimerText, taskTime, false);
         battery = new CountdownTimer(batteryTimerText, taskTime, false);
         oxygen = new CountdownTimer(oxygenTimerText, taskTime, false);
-        currentTasks.Add(shield);
         mainTimer.Go();
-        shield.Go();
+        shield.setShieldBroken();
         FindObjectOfType<GameController>().setShieldDown(true);        
     }
 
@@ -62,10 +61,10 @@ public class Timers : MonoBehaviour
             battery.Go();
             currentTasks.Add(battery);
         }
-        if (FindObjectOfType<GameController>().getShieldDown() && !shield.getGo())
+
+        if (!FindObjectOfType<GameController>().getShieldDown())
         {
-            shield.Go();
-            currentTasks.Add(shield);
+            shield.ResetToOk();
         }
 
 

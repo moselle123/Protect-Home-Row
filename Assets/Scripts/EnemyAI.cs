@@ -5,11 +5,11 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform oxygenSystem;
-    public Transform engineSystem;
-    public Transform batterySystem;
-    public Transform autopilotSystem;
-    public Transform shieldSystem;
+    private Transform oxygenSystem;
+    private Transform engineSystem;
+    private Transform batterySystem;
+    private Transform autopilotSystem;
+    private Transform shieldSystem;
     Transform[] systems;
     Transform target;
     string targetName;
@@ -32,7 +32,51 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        setNewPath();
+        oxygenSystem = GameObject.FindGameObjectWithTag("oxygen").transform;
+        engineSystem = GameObject.FindGameObjectWithTag("engine").transform;
+        batterySystem = GameObject.FindGameObjectWithTag("battery").transform;
+        autopilotSystem = GameObject.FindGameObjectWithTag("autopilot").transform;
+        shieldSystem = GameObject.FindGameObjectWithTag("shield").transform;
+
+        systems = new Transform[] { oxygenSystem, engineSystem, batterySystem, autopilotSystem, shieldSystem };
+        currentWaypoint = 0;
+
+
+        if (setTarget() != 10)
+        {
+            target = systems[setTarget()];
+        }
+        else
+        {
+            target = shieldSystem;
+        }
+
+        if (target == shieldSystem)
+        {
+            targetName = "shieldSystem";
+        }
+        else if (target == oxygenSystem)
+        {
+            targetName = "oxygenSystem";
+        }
+        else if (target == engineSystem)
+        {
+            targetName = "engineSystem";
+        }
+        else if (target == batterySystem)
+        {
+            targetName = "batterySystem";
+        }
+        else
+        {
+            targetName = "autopilotSystem";
+        }
+
+
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+        seeker.StartPath(rb.position, target.position, OnPathComplete);
+
+        reachedEndOfPath = false;
     }
 
     int setTarget()
@@ -174,7 +218,6 @@ public class EnemyAI : MonoBehaviour
 
     void setNewPath()
     {
-        systems = new Transform[] { oxygenSystem, engineSystem, batterySystem, autopilotSystem, shieldSystem };
         currentWaypoint = 0;
         
 

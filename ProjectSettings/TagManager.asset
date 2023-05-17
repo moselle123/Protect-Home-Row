@@ -5,6 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - spaceship
+  - computer
+  - battery
+  - engine
+  - autopilot
+  - oxygen
+  - shield
+  - batteryHealth
+  - engineHealth
+  - oxygenHealth
+  - shieldHealth
+  - autopilotHealth
   layers:
   - Default
   - TransparentFX

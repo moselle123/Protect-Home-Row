@@ -13,7 +13,7 @@ public class Interactables : MonoBehaviour
     public GameObject computerScene;
     public GameObject spaceship;
     public GameController gameController;
-    public string name;
+    public new string name;
     public HealthBar healthBar;
     int health = 10;
     private Coroutine healthDecreaseCoroutine;
@@ -30,7 +30,7 @@ public class Interactables : MonoBehaviour
             }
         }
 
-        if(enemyInRange && healthDecreaseCoroutine == null)
+        if (enemyInRange && healthDecreaseCoroutine == null)
         {
             healthDecreaseCoroutine = StartCoroutine(DecreaseHealthCoroutine());
         }
