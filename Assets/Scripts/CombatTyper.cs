@@ -19,6 +19,7 @@ public class CombatTyper : MonoBehaviour
     public TextMeshProUGUI timerOutput;
     bool go = false;
     float currentTime;
+    bool setUp = false;
 
     private string remainingWord = string.Empty;
     private string currentWord = "";
@@ -29,13 +30,8 @@ public class CombatTyper : MonoBehaviour
     int nextWordLength;
     public GameController gameController;
 
-    void Start()
-    {
-        enemy.setStopped();
-        currentTime = 15;
-        go = true;
-        setWindow();
-    }
+    public GameObject game;
+    public GameObject combatScene;
 
     private void SetCurrentWord()
     {
@@ -51,6 +47,10 @@ public class CombatTyper : MonoBehaviour
     {
         if (go)
         {
+            if (!setUp)
+            {
+                setWindow();
+            } 
             currentTime -= Time.deltaTime;
             TimeSpan timeSpan = TimeSpan.FromSeconds(currentTime);
             timerOutput.text = string.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
@@ -150,20 +150,24 @@ public class CombatTyper : MonoBehaviour
         SetCurrentWord();
         enemyHealth.SetMaxHealth(words.Count -  1);
         playerHealth.SetMaxHealth(5);
+        enemy.setStopped();
+        currentTime = 15;
+        go = true;
+        setUp = true;
     }
 
     IEnumerator BackToLevel()
     {
         yield return new WaitForSeconds(2.5f);
-
-        FindObjectOfType<GameController>().ResumeGame();
-        SceneManager.LoadScene(1);
+        setUp = false;
+        game.SetActive(true);
+        combatScene.SetActive(false);
     }
 
     IEnumerator Die()
     {
         yield return new WaitForSeconds(1f);
-
+        setUp = false;
         FindObjectOfType<GameController>().GameOver("You were killed by your enemy!");
     }
 }

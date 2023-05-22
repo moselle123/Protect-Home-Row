@@ -3,16 +3,38 @@ using UnityEngine.SceneManagement;
 
 public class TriggerArea : MonoBehaviour
 {
+    private bool isPlayerInside = false;
+    GameObject game;
+    GameObject combatScene;
+
+    private void Start()
+    {
+        game = GameObject.FindGameObjectWithTag("game");
+        combatScene = GameObject.FindGameObjectWithTag("combatScene");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("entered");
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                FindObjectOfType<GameController>().PauseGame();
-                SceneManager.LoadScene("Combat");
-            }
+            isPlayerInside = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isPlayerInside = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlayerInside && Input.GetKeyDown(KeyCode.F))
+        {
+            game.SetActive(false);
+            combatScene.SetActive(true);
         }
     }
 }
