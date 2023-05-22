@@ -15,7 +15,7 @@ public class Typer : MonoBehaviour
     private string typed = "";
     public GameController gameController;
     string currentSystem;
-    
+
     void Start()
     {
         setWindow();
@@ -82,16 +82,17 @@ public class Typer : MonoBehaviour
                     gameController.setShieldDown(false);
                 }
                 output.text = "";
-                
+
                 spaceship.SetActive(true);
                 computerScene.SetActive(false);
             }
         }
     }
 
-    private bool IsCorrectLetter(string letter) {
+    private bool IsCorrectLetter(string letter)
+    {
         return remainingWord.IndexOf(letter) == 0;
-    } 
+    }
 
     private void RemoveLetter()
     {

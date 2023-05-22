@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
 
-    bool isInRange = false;
     public KeyCode interactKey;
 
     public RangeDetector rangeDetector;
@@ -30,14 +29,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isInRange)
-        {
-            if (Input.GetKeyDown(interactKey))
-            {
-                FindObjectOfType<GameController>().PauseGame();
-                SceneManager.LoadScene("Combat");
-            }
-        }
 
         if (movementInput != Vector2.zero)
         {
@@ -108,21 +99,5 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            isInRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            isInRange = false;
-        }
     }
 }

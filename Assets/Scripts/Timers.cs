@@ -39,6 +39,10 @@ public class Timers : MonoBehaviour
 
     void Update()
     {
+        if (mainTimer.GetTime() <= 0)
+        {
+            FindObjectOfType<GameController>().LevelComplete("nothing");
+        }
         mainTimer.Update();
 
         if (FindObjectOfType<GameController>().getAutopilotDown() && !autopilot.getGo())

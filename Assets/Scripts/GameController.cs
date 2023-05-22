@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameOver gameOverScreen;
+    public GameOver levelComplete;
 
     string currentSystem;
     bool shieldDown = false;
@@ -99,6 +100,11 @@ public class GameController : MonoBehaviour
             Time.timeScale = previousTimeScale;
             isGamePaused = false;
         }
+    }
+
+    public void LevelComplete(string deathReason)
+    {
+        levelComplete.SetUp(deathReason);
     }
 
 }
