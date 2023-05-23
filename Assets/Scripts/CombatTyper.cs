@@ -34,7 +34,7 @@ public class CombatTyper : MonoBehaviour
 
     void Start()
     {
-        enemy.setStopped();
+        //enemy.setStopped();
         currentTime = 15;
         go = true;
         words.Add("I");
@@ -108,10 +108,10 @@ public class CombatTyper : MonoBehaviour
                     nextWord = words[currentWordsIndex];
                     nextWordLength = nextWord.Length;
                     player.swingSword();
-                    int enemyHealthNow = (int) enemyHealth.getHealth() - 1;
+                    int enemyHealthNow = (int)enemyHealth.getHealth() - 1;
                     enemyHealth.SetHealth(enemyHealthNow);
                 }
-         
+
             }
         }
         else
@@ -158,7 +158,7 @@ public class CombatTyper : MonoBehaviour
         nextWordLength = nextWord.Length;
         typed = "";
         SetCurrentWord();
-        enemyHealth.SetMaxHealth(words.Count -  1);
+        enemyHealth.SetMaxHealth(words.Count - 1);
         playerHealth.SetMaxHealth(5);
         enemyDefeated.gameObject.SetActive(false);
         output.gameObject.SetActive(true);
