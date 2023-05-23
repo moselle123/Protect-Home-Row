@@ -17,6 +17,9 @@ TagManager:
   - oxygenHealth
   - shieldHealth
   - autopilotHealth
+  - combatScene
+  - game
+  - combat
   layers:
   - Default
   - TransparentFX

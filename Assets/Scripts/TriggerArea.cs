@@ -4,6 +4,14 @@ using UnityEngine.SceneManagement;
 public class TriggerArea : MonoBehaviour
 {
     private bool isPlayerInside = false;
+    GameObject game;
+    GameObject thisEnemy;
+
+    private void Start()
+    {
+        game = GameObject.FindGameObjectWithTag("game");
+        thisEnemy = this.gameObject;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,7 +33,7 @@ public class TriggerArea : MonoBehaviour
     {
         if (isPlayerInside && Input.GetKeyDown(KeyCode.F))
         {
-            SceneManager.LoadScene("Combat");
+            FindObjectOfType<GameController>().setCombat(thisEnemy);
         }
     }
 }

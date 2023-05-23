@@ -9,6 +9,10 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate = 10f;
     public float spawnRadius = 0f;
 
+    int enemy1Counter = 0;
+    int enemy2Counter = 0;
+    int enemy3Counter = 0;
+
     private float spawnTimer;      
 
 
@@ -30,17 +34,19 @@ public class EnemySpawner : MonoBehaviour
                 {
                     GameObject spawnedEnemy = Instantiate(enemy1, spawnPosition, Quaternion.identity);
                     spawnedEnemy.tag = "Enemy";
-
+                    enemy1Counter++;
                 }
                 else if (randomIndex == 2)
                 {
                     GameObject spawnedEnemy = Instantiate(enemy2, spawnPosition, Quaternion.identity);
                     spawnedEnemy.tag = "Enemy";
+                    enemy2Counter++;
                 }
                 else
                 {
                     GameObject spawnedEnemy = Instantiate(enemy3, spawnPosition, Quaternion.identity);
                     spawnedEnemy.tag = "Enemy";
+                    enemy3Counter++;
                 }
 
             }

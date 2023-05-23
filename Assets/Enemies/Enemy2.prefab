@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1892015122668289358}
   - component: {fileID: 8535023126045616465}
   - component: {fileID: 1956795262388422046}
+  - component: {fileID: 6258531087674263741}
+  - component: {fileID: 1270408644863546189}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -49,9 +51,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2118702, y: 0.027739517}
+  m_Offset: {x: -0.024454832, y: 0.027739525}
   serializedVersion: 2
-  m_Radius: 0.271918
+  m_Radius: 0.22626567
 --- !u!50 &1892015122668289358
 Rigidbody2D:
   serializedVersion: 4
@@ -116,6 +118,34 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!58 &6258531087674263741
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7981903269844691717}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1270408644863546189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7981903269844691717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e0b77478fb12c40ba554d6dca31e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7229535744373727637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,11 +159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2509941101064736719, guid: 0f2ae9d5520bf5040bf171500a1cd1ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.20598395
+      value: -0.018
       objectReference: {fileID: 0}
     - target: {fileID: 2509941101064736719, guid: 0f2ae9d5520bf5040bf171500a1cd1ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07006079
+      value: 0.044
       objectReference: {fileID: 0}
     - target: {fileID: 2509941101064736719, guid: 0f2ae9d5520bf5040bf171500a1cd1ad, type: 3}
       propertyPath: m_LocalPosition.z

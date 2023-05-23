@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public TextMeshProUGUI deathReason; 
-    public GameObject game; 
+    public GameObject game;
+    public GameObject combat;
     public bool isLevelComplete;
     public GameObject creditsScene;
 
     public void SetUp(string _deathReason)
     {
         game.SetActive(false);
+        combat.SetActive(false);
         gameObject.SetActive(true);
         deathReason.text = _deathReason;
     }

@@ -10,6 +10,9 @@ public class CombatTyper : MonoBehaviour
     public PlayerCombat player;
     public EnemyGFX enemy;
 
+    public GameObject game;
+    public GameObject combat;
+
     public HealthBar enemyHealth;
     public HealthBar playerHealth;
 
@@ -34,6 +37,15 @@ public class CombatTyper : MonoBehaviour
         enemy.setStopped();
         currentTime = 15;
         go = true;
+        words.Add("I");
+        words.Add(" will");
+        words.Add(" defeat");
+        words.Add(" you");
+        words.Add(" because");
+        words.Add(" I'm");
+        words.Add(" the");
+        words.Add(" best");
+        words.Add(".");
         setWindow();
     }
 
@@ -57,6 +69,7 @@ public class CombatTyper : MonoBehaviour
         }
         if (currentTime <= 0)
         {
+            FindObjectOfType<GameController>().setMainGame();
             FindObjectOfType<GameController>().GameOver("You ran out of time to defeat your enemy!");
         }
         CheckInput();
@@ -108,7 +121,6 @@ public class CombatTyper : MonoBehaviour
             playerHealth.SetHealth(playerHealthNow);
             if (playerHealthNow == 0)
             {
-                
                 player.die();
                 StartCoroutine(Die());
             }
@@ -133,13 +145,11 @@ public class CombatTyper : MonoBehaviour
         return nextWordLength == 0;
     }
 
-    void setWindow()
+    public void setWindow()
     {
-        words.Add("I");
-        words.Add(" will");
-        words.Add(" defeat");
-        words.Add(" you");
-        words.Add(".");
+        currentWord = "";
+        remainingWord = "";
+        currentWordsIndex = 0;
         foreach (string word in words)
         {
             currentWord += word;
@@ -150,20 +160,22 @@ public class CombatTyper : MonoBehaviour
         SetCurrentWord();
         enemyHealth.SetMaxHealth(words.Count -  1);
         playerHealth.SetMaxHealth(5);
+        enemyDefeated.gameObject.SetActive(false);
+        output.gameObject.SetActive(true);
     }
 
     IEnumerator BackToLevel()
     {
         yield return new WaitForSeconds(2.5f);
 
-        FindObjectOfType<GameController>().ResumeGame();
-        SceneManager.LoadScene(1);
+        FindObjectOfType<GameController>().setMainGame();
     }
 
     IEnumerator Die()
     {
         yield return new WaitForSeconds(1f);
 
+        FindObjectOfType<GameController>().setMainGame();
         FindObjectOfType<GameController>().GameOver("You were killed by your enemy!");
     }
 }
