@@ -10,10 +10,9 @@ public class Dialog : MonoBehaviour
 
     int counter = 0;
     bool intro = true;
-    bool autopilot = false;
-    bool engine = false;
+    bool shield = false;
     string[] introText = {"We need to fix the shield quickly or enemies will start flooding in.", "I'd say we have about 2 minutes to get back to safety we have to hold off the attack until then.", "First things first, get to the shield control system and type out the commands to fix it."};
-    string[] autopilotText = {"Oh no the autopilot has short circuited! Get to the autopilot control system as quickly as possible to fix it."};
+    string[] shieldText = {"Now you need to defeat the enemies.", "To fight enemies walk up to them and press F.", "when you defeat them they will drop powerful weapons. ", "To collect your weapon press E, you'll get a time boost for each weapon you collect."};
 
     private void Start()
     {
@@ -37,5 +36,30 @@ public class Dialog : MonoBehaviour
 
             counter++;
         }
+
+        if (shield)
+        {
+            FindObjectOfType<GameController>().PauseGame();
+            dialogObjects.SetActive(true);
+            counter = 0;
+            output.text = "Well done, you fixed the shield!";
+            if (Input.GetKeyDown("space") && shield)
+            {
+                output.text = shieldText[counter];
+                if (counter == introText.Length - 1)
+                {
+                    dialogObjects.SetActive(false);
+                    FindObjectOfType<GameController>().ResumeGame();
+                    shield = false;
+                    counter = 0;
+                }
+
+                counter++;
+            }
+        }
+    }
+    public void setShield()
+    {
+        shield = true;
     }
 }

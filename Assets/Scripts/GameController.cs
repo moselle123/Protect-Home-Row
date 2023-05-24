@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     public GameObject combat;
     public GameObject game;
 
+    public Dialog dialog;
+
     string powerUp = null;
     Vector3 pickUpLocation;
     Quaternion pickUpRotation;
@@ -32,6 +34,8 @@ public class GameController : MonoBehaviour
     private bool isGamePaused = false;
     private float previousTimeScale;
 
+    int toggle = 1;
+
 
     public void GameOver(string deathReason)
     {
@@ -41,6 +45,15 @@ public class GameController : MonoBehaviour
     public void setShieldDown(bool broke)
     {
         shieldDown = broke;
+        if (toggle == 2)
+        {
+            dialog.setShield();
+        }
+        else if (toggle == 1)
+        {
+            toggle++;
+        }
+        
     }
 
     public bool getShieldDown()

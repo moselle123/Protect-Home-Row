@@ -35,7 +35,19 @@ public class CombatTyper : MonoBehaviour
     void Start()
     {
         //enemy.setStopped();
-        currentTime = 15;
+        if (gameController.getPowerUp() == null)
+        {
+            currentTime = 15;
+        }
+        else if (gameController.getPowerUp() == "hammer")
+        {
+            currentTime = 20;
+        }
+        else
+        {
+            currentTime = 30;
+        }
+        
         go = true;
         words.Add("I");
         words.Add(" will");
@@ -45,7 +57,6 @@ public class CombatTyper : MonoBehaviour
         words.Add(" I'm");
         words.Add(" the");
         words.Add(" best");
-        words.Add(".");
         setWindow();
     }
 
